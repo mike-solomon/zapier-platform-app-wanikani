@@ -1,0 +1,12 @@
+{
+  "env": {
+    "mocha": true
+  },
+  "globals": {
+    "describe": true,
+    "it": true
+  },
+  "rules": {
+    "import/no-extraneous-dependencies": 0
+  }
+}
