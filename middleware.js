@@ -49,9 +49,9 @@ const checkForErrors = (response, z) => {
   }
 
   // TODO: Implement more error handling as I figure out what can go wrong
-  const errorDescription = _.get(responseJson, 'error');
+  const errorMessage = _.get(responseJson, 'error');
 
-  if (errorDescription) {
+  if (errorMessage) {
     throw new Error(`${prefixErrorMessageWith}: ${errorMessage}`);
   }
 

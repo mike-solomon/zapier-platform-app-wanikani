@@ -1,0 +1,163 @@
+{
+  "object": "collection",
+  "url": "https://api.wanikani.com/v2/level_progressions",
+  "pages": {
+    "per_page": 500,
+    "next_url": null,
+    "previous_url": null
+  },
+  "total_count": 10,
+  "data_updated_at": "2019-11-10T22:12:56.959439Z",
+  "data": [
+    {
+      "id": 455058,
+      "object": "level_progression",
+      "url": "https://api.wanikani.com/v2/level_progressions/455058",
+      "data_updated_at": "2018-12-16T19:36:11.409567Z",
+      "data": {
+        "created_at": "2018-11-05T06:37:24.908006Z",
+        "level": 1,
+        "unlocked_at": "2018-11-05T06:37:24.906707Z",
+        "started_at": "2018-11-05T06:41:05.385855Z",
+        "passed_at": "2018-12-16T19:36:11.401130Z",
+        "completed_at": null,
+        "abandoned_at": null
+      }
+    },
+    {
+      "id": 484793,
+      "object": "level_progression",
+      "url": "https://api.wanikani.com/v2/level_progressions/484793",
+      "data_updated_at": "2019-01-08T19:34:06.756992Z",
+      "data": {
+        "created_at": "2018-12-16T19:36:11.682563Z",
+        "level": 2,
+        "unlocked_at": "2018-12-16T19:36:11.651457Z",
+        "started_at": "2018-12-23T20:42:26.156103Z",
+        "passed_at": "2019-01-08T19:34:06.735589Z",
+        "completed_at": null,
+        "abandoned_at": null
+      }
+    },
+    {
+      "id": 503511,
+      "object": "level_progression",
+      "url": "https://api.wanikani.com/v2/level_progressions/503511",
+      "data_updated_at": "2019-02-14T02:32:38.645254Z",
+      "data": {
+        "created_at": "2019-01-08T19:34:06.880186Z",
+        "level": 3,
+        "unlocked_at": "2019-01-08T19:34:06.848339Z",
+        "started_at": "2019-02-02T00:25:57.486220Z",
+        "passed_at": "2019-02-14T02:32:38.634423Z",
+        "completed_at": null,
+        "abandoned_at": null
+      }
+    },
+    {
+      "id": 538272,
+      "object": "level_progression",
+      "url": "https://api.wanikani.com/v2/level_progressions/538272",
+      "data_updated_at": "2019-03-30T07:38:22.560120Z",
+      "data": {
+        "created_at": "2019-02-14T02:32:38.694758Z",
+        "level": 4,
+        "unlocked_at": "2019-02-14T02:32:38.686233Z",
+        "started_at": "2019-02-23T18:03:05.493543Z",
+        "passed_at": "2019-03-30T07:38:22.521978Z",
+        "completed_at": null,
+        "abandoned_at": null
+      }
+    },
+    {
+      "id": 580090,
+      "object": "level_progression",
+      "url": "https://api.wanikani.com/v2/level_progressions/580090",
+      "data_updated_at": "2019-05-09T23:53:34.141058Z",
+      "data": {
+        "created_at": "2019-03-30T07:38:22.718456Z",
+        "level": 5,
+        "unlocked_at": "2019-03-30T07:38:22.687182Z",
+        "started_at": "2019-04-02T02:16:52.091504Z",
+        "passed_at": "2019-05-09T23:53:34.095699Z",
+        "completed_at": null,
+        "abandoned_at": null
+      }
+    },
+    {
+      "id": 617233,
+      "object": "level_progression",
+      "url": "https://api.wanikani.com/v2/level_progressions/617233",
+      "data_updated_at": "2019-06-30T22:09:03.590032Z",
+      "data": {
+        "created_at": "2019-05-09T23:53:34.398743Z",
+        "level": 6,
+        "unlocked_at": "2019-05-09T23:53:34.362488Z",
+        "started_at": "2019-05-15T18:23:10.767898Z",
+        "passed_at": "2019-06-30T22:09:03.572384Z",
+        "completed_at": null,
+        "abandoned_at": null
+      }
+    },
+    {
+      "id": 665057,
+      "object": "level_progression",
+      "url": "https://api.wanikani.com/v2/level_progressions/665057",
+      "data_updated_at": "2019-08-05T19:03:11.262705Z",
+      "data": {
+        "created_at": "2019-06-30T22:09:03.663783Z",
+        "level": 7,
+        "unlocked_at": "2019-06-30T22:09:03.648876Z",
+        "started_at": "2019-07-02T21:46:35.745487Z",
+        "passed_at": "2019-08-05T19:03:11.248999Z",
+        "completed_at": null,
+        "abandoned_at": null
+      }
+    },
+    {
+      "id": 700563,
+      "object": "level_progression",
+      "url": "https://api.wanikani.com/v2/level_progressions/700563",
+      "data_updated_at": "2019-09-23T23:15:28.371460Z",
+      "data": {
+        "created_at": "2019-08-05T19:03:11.318213Z",
+        "level": 8,
+        "unlocked_at": "2019-08-05T19:03:11.307211Z",
+        "started_at": "2019-08-10T02:17:32.233632Z",
+        "passed_at": "2019-09-23T23:15:28.344350Z",
+        "completed_at": null,
+        "abandoned_at": null
+      }
+    },
+    {
+      "id": 753497,
+      "object": "level_progression",
+      "url": "https://api.wanikani.com/v2/level_progressions/753497",
+      "data_updated_at": "2019-11-10T22:00:11.100209Z",
+      "data": {
+        "created_at": "2019-09-23T23:15:28.518810Z",
+        "level": 9,
+        "unlocked_at": "2019-09-23T23:15:28.501235Z",
+        "started_at": "2019-09-28T23:17:10.060685Z",
+        "passed_at": "2019-11-10T22:00:11.086910Z",
+        "completed_at": null,
+        "abandoned_at": null
+      }
+    },
+    {
+      "id": 802797,
+      "object": "level_progression",
+      "url": "https://api.wanikani.com/v2/level_progressions/802797",
+      "data_updated_at": "2019-11-10T22:12:56.959439Z",
+      "data": {
+        "created_at": "2019-11-10T22:00:11.169413Z",
+        "level": 10,
+        "unlocked_at": "2019-11-10T22:00:11.157482Z",
+        "started_at": "2019-11-10T22:12:56.948667Z",
+        "passed_at": null,
+        "completed_at": null,
+        "abandoned_at": null
+      }
+    }
+  ]
+}
