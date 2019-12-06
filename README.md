@@ -3,7 +3,7 @@
 [![npm](https://img.shields.io/npm/v/npm.svg?style=flat-square)](https://www.npmjs.com/package/npm)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
-The CLI App for [WaniKani](https://www.wanikani.com/)
+The Zapier CLI App for [WaniKani](https://www.wanikani.com/)
 
 ## Developing
 
@@ -30,7 +30,7 @@ Run the following commands to get started locally:
 
 ```shell
 git clone git@github.com:mikesol314/zapier-platform-app-wanikani.git
-cd wanikani-zapier-integration
+cd zapier-platform-app-wanikani
 npm install
 git checkout -b <branchName>
 ```
