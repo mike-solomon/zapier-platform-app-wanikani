@@ -1,3 +1,0 @@
-Use this folder to store results from calling the actual APIs of the service
-so you can use pretend those get sent to Zapier for the tests. See here for
-an example: https://github.com/zapier/zapier-platform-app-zohocrm/tree/master/test/fixtures/responses

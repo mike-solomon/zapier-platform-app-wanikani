@@ -1,2 +1,4 @@
-// TODO: Uncomment this if you need to extend chai
-// const chai = require('chai');
+const chai = require('chai');
+chai.use(require('chai-as-promised'));
+chai.use(require('chai-things'));
+chai.use(require('chai-string'));

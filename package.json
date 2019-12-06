@@ -17,7 +17,10 @@
     "npm": ">=5.6.0"
   },
   "dependencies": {
-    "config": "^2.0.1",
+    "chai-as-promised": "^7.1.1",
+    "chai-string": "^1.5.0",
+    "chai-things": "^0.2.0",
+    "lodash": "^4.17.15",
     "zapier-platform-core": "9.0.0"
   },
   "devDependencies": {

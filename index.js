@@ -1,14 +1,18 @@
-// const authentication = require('./authentication');
+const authentication = require('./authentication');
+const middleware = require('./middleware');
 
 const App = {
   version: require('./package.json').version, // eslint-disable-line global-require
   platformVersion: require('zapier-platform-core').version, // eslint-disable-line global-require
 
-  // authentication,
+  authentication,
 
-  beforeRequest: [],
+  beforeRequest: [
+    middleware.includeBearerToken,
+    middleware.includeWanikaniRevision,
+  ],
 
-  afterResponse: [],
+  afterResponse: [middleware.checkForErrors],
 
   resources: {},
 

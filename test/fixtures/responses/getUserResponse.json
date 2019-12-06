@@ -1,0 +1,28 @@
+{
+  "object": "user",
+  "url": "https://api.wanikani.com/v2/user",
+  "data_updated_at": "2019-12-05T22:33:06.073783Z",
+  "data": {
+    "id": "c7d3d8e6-670b-42dc-af06-e03279ffaa81",
+    "username": "mikesol",
+    "level": 10,
+    "profile_url": "https://www.wanikani.com/users/mikesol",
+    "started_at": "2018-11-05T06:37:24.893239Z",
+    "subscription": {
+      "active": true,
+      "type": "lifetime",
+      "max_level_granted": 60,
+      "period_ends_at": null
+    },
+    "subscribed": true,
+    "max_level_granted_by_subscription": 60,
+    "current_vacation_started_at": null,
+    "preferences": {
+      "lessons_batch_size": 3,
+      "lessons_autoplay_audio": true,
+      "reviews_autoplay_audio": true,
+      "lessons_presentation_order": "ascending_level_then_subject",
+      "reviews_display_srs_indicator": true
+    }
+  }
+}

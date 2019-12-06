@@ -1,4 +1,0 @@
-// rename this file to local.js and you can override any config vars here that you want, this file is ignored from source control
-module.exports = {
-
-};

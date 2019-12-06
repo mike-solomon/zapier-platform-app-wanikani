@@ -1,6 +1,32 @@
-// TODO: Fill this in. Perhaps by copying one of the example
-// zapier repositories such as the oauth2 one:
-// https://github.com/zapier/zapier-platform-example-app-oauth2/blob/master/authentication.js
-// Note: You'll want to restructure it a bit to look more like:
-// https://github.com/zapier/zapier-platform-app-zohocrm/blob/master/authentication.js
-// which uses async / await instead of promises
+const { API_BASE_URL } = require('./constants');
+
+const testAuth = async z => {
+  const response = await z.request({
+    method: 'GET',
+    url: `${API_BASE_URL}/user`,
+    disableMiddlewareErrorChecking: true,
+  });
+
+  if (response.status !== 200) {
+    throw new Error(
+      'Your Access Token is invalid. Please try reconnecting your account.'
+    );
+  }
+  return z.JSON.parse(response.content).data;
+};
+
+module.exports = {
+  type: 'custom',
+  fields: [
+    {
+      key: 'access_token',
+      label: 'Access Token',
+      required: true,
+      type: 'string',
+      helpText:
+        'Create a new Access Token key from your [API Tokens page](https://www.wanikani.com/settings/personal_access_tokens) in WaniKani.',
+    },
+  ],
+  test: testAuth,
+  connectionLabel: '{{username}}',
+};
