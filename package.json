@@ -5,7 +5,7 @@
   "repository": "mikesol314/zapier-platform-app-wanikani",
   "homepage": "https://zapier.com/",
   "author": "Mike Solomon <mikesol@gmail.com>",
-  "license": "BSD-3-Clause",
+  "license": "MIT",
   "main": "index.js",
   "scripts": {
     "test": "mocha --recursive --require './test/bootstrap.js'",
