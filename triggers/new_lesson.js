@@ -1,42 +1,42 @@
 const moment = require('moment');
-const sample = require('../samples/review');
+const sample = require('../samples/lesson');
 const { API_BASE_URL } = require('../constants');
 
-// If there are new reviews, return the time they become available.
-const checkForNewReviews = async (z, bundle) => {
-  // Filter the reviews to only the ones that came into existence
+// If there are new lessons, return the time they become unlocked.
+const checkForNewLessons = async (z, bundle) => {
+  // Filter the lessons to only the ones that came into existence
   // within the past 30 minutes. This helps ensure we don't notify
-  // people many times about old reviews.
+  // people many times about old lessons.
   const now = moment.utc();
   const thirtyMinutesAgo = now.subtract(30, 'minutes').toISOString();
 
-  const checkForNewReviewsResponse = await z.request({
+  const checkForNewLessonsResponse = await z.request({
     url: `${API_BASE_URL}/assignments`,
     params: {
-      immediately_available_for_review: true,
-      available_after: thirtyMinutesAgo,
+      immediately_available_for_lessons: true,
+      updated_after: thirtyMinutesAgo,
     },
-    prefixErrorMessageWith: 'Unable to retrieve reviews',
+    prefixErrorMessageWith: 'Unable to retrieve lessons',
   });
 
-  const parsedJSON = z.JSON.parse(checkForNewReviewsResponse.content);
+  const parsedJSON = z.JSON.parse(checkForNewLessonsResponse.content);
 
   if (parsedJSON && parsedJSON.data && parsedJSON.total_count) {
-    // The available at time will always be the same for all reviews
-    return parsedJSON.data[0].data.available_at;
+    // The unlocked at time will always be the same for all lessons
+    return parsedJSON.data[0].data.unlocked_at;
   }
 };
 
-const getAllReviews = async (z, bundle) => {
-  const getAllReviewsResponse = await z.request({
+const getAllLessons = async (z, bundle) => {
+  const getAllLessonsResponse = await z.request({
     url: `${API_BASE_URL}/assignments`,
     params: {
-      immediately_available_for_review: true,
+      immediately_available_for_lessons: true,
     },
-    prefixErrorMessageWith: 'Unable to retrieve reviews',
+    prefixErrorMessageWith: 'Unable to retrieve lessons',
   });
 
-  const parsedJSON = z.JSON.parse(getAllReviewsResponse.content);
+  const parsedJSON = z.JSON.parse(getAllLessonsResponse.content);
 
   if (parsedJSON && parsedJSON.data && parsedJSON.total_count) {
     return parsedJSON;
@@ -49,7 +49,7 @@ const getAllReviews = async (z, bundle) => {
 const checkIfWeShouldNotifyUser = (
   z,
   bundle,
-  numberOfReviews,
+  numberOfLessons,
   numberOfRadicals,
   numberOfKanji,
   numberOfVocabWords
@@ -57,8 +57,8 @@ const checkIfWeShouldNotifyUser = (
   let shouldNotifyUser = true;
 
   if (
-    bundle.inputData.minReviews &&
-    numberOfReviews < bundle.inputData.minReviews
+    bundle.inputData.minLessons &&
+    numberOfLessons < bundle.inputData.minLessons
   ) {
     shouldNotifyUser = false;
   }
@@ -84,31 +84,31 @@ const checkIfWeShouldNotifyUser = (
   return shouldNotifyUser;
 };
 
-const triggerNewReview = async (z, bundle) => {
-  // Users might not always have reviews - so let's just default
+const triggerNewLessons = async (z, bundle) => {
+  // Users might not always have lessons - so let's just default
   // to returning the sample if the user tries to load samples.
   if (bundle && bundle.meta && bundle.meta.isLoadingSample) {
     return [sample];
   }
 
-  const availableAtTime = await checkForNewReviews(z, bundle);
+  const unlockedAtTime = await checkForNewLessons(z, bundle);
 
-  if (availableAtTime) {
-    // API Docs for what's returned from getting the list of reviews:
+  if (unlockedAtTime) {
+    // API Docs for what's returned from getting the list of lessons:
     // https://docs.api.wanikani.com/20170710/#get-all-assignments
-    const allReviews = await getAllReviews(z, bundle);
+    const allLessons = await getAllLessons(z, bundle);
 
-    const numberOfReviews = allReviews.total_count;
+    const numberOfLessons = allLessons.total_count;
     let numberOfRadicals = 0;
     let numberOfKanji = 0;
     let numberOfVocabWords = 0;
 
-    allReviews.data.forEach(review => {
-      if (review.data.subject_type === 'radical') {
+    allLessons.data.forEach(lesson => {
+      if (lesson.data.subject_type === 'radical') {
         numberOfRadicals++;
-      } else if (review.data.subject_type === 'kanji') {
+      } else if (lesson.data.subject_type === 'kanji') {
         numberOfKanji++;
-      } else if (review.data.subject_type === 'vocabulary') {
+      } else if (lesson.data.subject_type === 'vocabulary') {
         numberOfVocabWords++;
       }
     });
@@ -117,7 +117,7 @@ const triggerNewReview = async (z, bundle) => {
       !checkIfWeShouldNotifyUser(
         z,
         bundle,
-        numberOfReviews,
+        numberOfLessons,
         numberOfRadicals,
         numberOfKanji,
         numberOfVocabWords
@@ -128,11 +128,11 @@ const triggerNewReview = async (z, bundle) => {
 
     return [
       {
-        // By setting the available at time of the most recent reviews to the id,
-        // we can ensure that we won't trigger multiple times on the same reviews
-        // even when people are doing their reviews.
-        id: moment.utc(availableAtTime).format(),
-        numberOfReviews: numberOfReviews,
+        // By setting the unlocked at time of the most recent lessons to the id,
+        // we can ensure that we won't trigger multiple times on the same lessons
+        // even when people are doing their lessons.
+        id: moment.utc(unlockedAtTime).format(),
+        numberOfLessons: numberOfLessons,
         numberOfRadicals: numberOfRadicals,
         numberOfKanji: numberOfKanji,
         numberOfVocabWords: numberOfVocabWords,
@@ -144,17 +144,17 @@ const triggerNewReview = async (z, bundle) => {
 };
 
 module.exports = {
-  key: 'new_review',
-  noun: 'Review',
+  key: 'new_lesson',
+  noun: 'Lesson',
 
   display: {
-    label: 'New Review',
-    description: 'Triggers when new reviews become available.',
+    label: 'New Lesson',
+    description: 'Triggers when new lessons become available.',
     important: true,
   },
 
   operation: {
-    perform: triggerNewReview,
+    perform: triggerNewLessons,
 
     inputFields: [
       {
@@ -162,12 +162,12 @@ module.exports = {
         type: 'copy',
         helpText:
           'Providing any of the below fields will ensure that you only get notified ' +
-          'if the number of reviews/radicals/etc is above the number specified. If ' +
-          'you provide none, you will be notified whenever new reviews become available.',
+          'if the number of lessons/radicals/etc is above the number specified. If ' +
+          'you provide none, you will be notified whenever new lessons become available.',
       },
       {
-        key: 'minReviews',
-        label: 'Minimum Number Of Reviews',
+        key: 'minLessons',
+        label: 'Minimum Number Of Lessons',
         type: 'integer',
       },
       {

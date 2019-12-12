@@ -59,7 +59,7 @@ module.exports = {
 
   display: {
     label: 'New Level',
-    description: 'Triggers when you reach a new level in WaniKani.',
+    description: 'Triggers when you reach a new level.',
     important: true,
   },
 

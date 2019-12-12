@@ -1,0 +1,265 @@
+{
+  "object": "collection",
+  "url": "https://api.wanikani.com/v2/assignments?immediately_available_for_lessons=true&updated_after=2019-12-05T01%3A14%3A40.544306Z",
+  "pages": {
+    "per_page": 500,
+    "next_url": null,
+    "previous_url": null
+  },
+  "total_count": 12,
+  "data_updated_at": "2019-12-08T06:26:49.459226Z",
+  "data": [
+    {
+      "id": 156997259,
+      "object": "assignment",
+      "url": "https://api.wanikani.com/v2/assignments/156997259",
+      "data_updated_at": "2019-12-05T07:17:22.574467Z",
+      "data": {
+        "created_at": "2019-12-05T07:17:22.574467Z",
+        "subject_id": 3223,
+        "subject_type": "vocabulary",
+        "srs_stage": 0,
+        "srs_stage_name": "Initiate",
+        "unlocked_at": "2019-12-05T07:17:22.570280Z",
+        "started_at": null,
+        "passed_at": null,
+        "burned_at": null,
+        "available_at": null,
+        "resurrected_at": null,
+        "passed": false,
+        "hidden": false
+      }
+    },
+    {
+      "id": 156997260,
+      "object": "assignment",
+      "url": "https://api.wanikani.com/v2/assignments/156997260",
+      "data_updated_at": "2019-12-05T07:17:22.583710Z",
+      "data": {
+        "created_at": "2019-12-05T07:17:22.583710Z",
+        "subject_id": 3224,
+        "subject_type": "vocabulary",
+        "srs_stage": 0,
+        "srs_stage_name": "Initiate",
+        "unlocked_at": "2019-12-05T07:17:22.580865Z",
+        "started_at": null,
+        "passed_at": null,
+        "burned_at": null,
+        "available_at": null,
+        "resurrected_at": null,
+        "passed": false,
+        "hidden": false
+      }
+    },
+    {
+      "id": 156997261,
+      "object": "assignment",
+      "url": "https://api.wanikani.com/v2/assignments/156997261",
+      "data_updated_at": "2019-12-05T07:17:22.593685Z",
+      "data": {
+        "created_at": "2019-12-05T07:17:22.593685Z",
+        "subject_id": 3225,
+        "subject_type": "vocabulary",
+        "srs_stage": 0,
+        "srs_stage_name": "Initiate",
+        "unlocked_at": "2019-12-05T07:17:22.590010Z",
+        "started_at": null,
+        "passed_at": null,
+        "burned_at": null,
+        "available_at": null,
+        "resurrected_at": null,
+        "passed": false,
+        "hidden": false
+      }
+    },
+    {
+      "id": 156997262,
+      "object": "assignment",
+      "url": "https://api.wanikani.com/v2/assignments/156997262",
+      "data_updated_at": "2019-12-05T07:17:22.602567Z",
+      "data": {
+        "created_at": "2019-12-05T07:17:22.602567Z",
+        "subject_id": 3226,
+        "subject_type": "vocabulary",
+        "srs_stage": 0,
+        "srs_stage_name": "Initiate",
+        "unlocked_at": "2019-12-05T07:17:22.599650Z",
+        "started_at": null,
+        "passed_at": null,
+        "burned_at": null,
+        "available_at": null,
+        "resurrected_at": null,
+        "passed": false,
+        "hidden": false
+      }
+    },
+    {
+      "id": 157258661,
+      "object": "assignment",
+      "url": "https://api.wanikani.com/v2/assignments/157258661",
+      "data_updated_at": "2019-12-07T23:05:46.693477Z",
+      "data": {
+        "created_at": "2019-12-07T23:05:46.693477Z",
+        "subject_id": 3187,
+        "subject_type": "vocabulary",
+        "srs_stage": 0,
+        "srs_stage_name": "Initiate",
+        "unlocked_at": "2019-12-07T23:05:46.678595Z",
+        "started_at": null,
+        "passed_at": null,
+        "burned_at": null,
+        "available_at": null,
+        "resurrected_at": null,
+        "passed": false,
+        "hidden": false
+      }
+    },
+    {
+      "id": 157258662,
+      "object": "assignment",
+      "url": "https://api.wanikani.com/v2/assignments/157258662",
+      "data_updated_at": "2019-12-07T23:05:46.726071Z",
+      "data": {
+        "created_at": "2019-12-07T23:05:46.726071Z",
+        "subject_id": 3193,
+        "subject_type": "vocabulary",
+        "srs_stage": 0,
+        "srs_stage_name": "Initiate",
+        "unlocked_at": "2019-12-07T23:05:46.716676Z",
+        "started_at": null,
+        "passed_at": null,
+        "burned_at": null,
+        "available_at": null,
+        "resurrected_at": null,
+        "passed": false,
+        "hidden": false
+      }
+    },
+    {
+      "id": 157258663,
+      "object": "assignment",
+      "url": "https://api.wanikani.com/v2/assignments/157258663",
+      "data_updated_at": "2019-12-07T23:05:46.766826Z",
+      "data": {
+        "created_at": "2019-12-07T23:05:46.766826Z",
+        "subject_id": 3200,
+        "subject_type": "vocabulary",
+        "srs_stage": 0,
+        "srs_stage_name": "Initiate",
+        "unlocked_at": "2019-12-07T23:05:46.760124Z",
+        "started_at": null,
+        "passed_at": null,
+        "burned_at": null,
+        "available_at": null,
+        "resurrected_at": null,
+        "passed": false,
+        "hidden": false
+      }
+    },
+    {
+      "id": 157258664,
+      "object": "assignment",
+      "url": "https://api.wanikani.com/v2/assignments/157258664",
+      "data_updated_at": "2019-12-07T23:05:46.778124Z",
+      "data": {
+        "created_at": "2019-12-07T23:05:46.778124Z",
+        "subject_id": 7574,
+        "subject_type": "vocabulary",
+        "srs_stage": 0,
+        "srs_stage_name": "Initiate",
+        "unlocked_at": "2019-12-07T23:05:46.774521Z",
+        "started_at": null,
+        "passed_at": null,
+        "burned_at": null,
+        "available_at": null,
+        "resurrected_at": null,
+        "passed": false,
+        "hidden": false
+      }
+    },
+    {
+      "id": 157286750,
+      "object": "assignment",
+      "url": "https://api.wanikani.com/v2/assignments/157286750",
+      "data_updated_at": "2019-12-08T06:26:49.427554Z",
+      "data": {
+        "created_at": "2019-12-08T06:26:49.427554Z",
+        "subject_id": 3220,
+        "subject_type": "vocabulary",
+        "srs_stage": 0,
+        "srs_stage_name": "Initiate",
+        "unlocked_at": "2019-12-08T06:26:49.422136Z",
+        "started_at": null,
+        "passed_at": null,
+        "burned_at": null,
+        "available_at": null,
+        "resurrected_at": null,
+        "passed": false,
+        "hidden": false
+      }
+    },
+    {
+      "id": 157286752,
+      "object": "assignment",
+      "url": "https://api.wanikani.com/v2/assignments/157286752",
+      "data_updated_at": "2019-12-08T06:26:49.439932Z",
+      "data": {
+        "created_at": "2019-12-08T06:26:49.439932Z",
+        "subject_id": 3221,
+        "subject_type": "vocabulary",
+        "srs_stage": 0,
+        "srs_stage_name": "Initiate",
+        "unlocked_at": "2019-12-08T06:26:49.436317Z",
+        "started_at": null,
+        "passed_at": null,
+        "burned_at": null,
+        "available_at": null,
+        "resurrected_at": null,
+        "passed": false,
+        "hidden": false
+      }
+    },
+    {
+      "id": 157286755,
+      "object": "assignment",
+      "url": "https://api.wanikani.com/v2/assignments/157286755",
+      "data_updated_at": "2019-12-08T06:26:49.450453Z",
+      "data": {
+        "created_at": "2019-12-08T06:26:49.450453Z",
+        "subject_id": 3222,
+        "subject_type": "vocabulary",
+        "srs_stage": 0,
+        "srs_stage_name": "Initiate",
+        "unlocked_at": "2019-12-08T06:26:49.447724Z",
+        "started_at": null,
+        "passed_at": null,
+        "burned_at": null,
+        "available_at": null,
+        "resurrected_at": null,
+        "passed": false,
+        "hidden": false
+      }
+    },
+    {
+      "id": 157286757,
+      "object": "assignment",
+      "url": "https://api.wanikani.com/v2/assignments/157286757",
+      "data_updated_at": "2019-12-08T06:26:49.459226Z",
+      "data": {
+        "created_at": "2019-12-08T06:26:49.459226Z",
+        "subject_id": 7685,
+        "subject_type": "vocabulary",
+        "srs_stage": 0,
+        "srs_stage_name": "Initiate",
+        "unlocked_at": "2019-12-08T06:26:49.456734Z",
+        "started_at": null,
+        "passed_at": null,
+        "burned_at": null,
+        "available_at": null,
+        "resurrected_at": null,
+        "passed": false,
+        "hidden": false
+      }
+    }
+  ]
+}
