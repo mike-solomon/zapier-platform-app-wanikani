@@ -6,7 +6,7 @@ const App = require('../../index');
 
 const appTester = zapier.createAppTester(App);
 
-describe.only('WaniKani App', () => {
+describe('WaniKani App', () => {
   it('declares a new review trigger', () =>
     expect(App.triggers.new_review).to.exist);
 
