@@ -12,25 +12,39 @@ describe('WaniKani App', () => {
 
   describe('new review trigger', () => {
     describe('given WaniKani returns a valid list of reviews', () => {
-      const getReviewsResponse = require('../fixtures/responses/getReviewsResponse'); // eslint-disable-line global-require
+      const getNewReviewsResponse = require('../fixtures/responses/getNewReviewsResponse'); // eslint-disable-line global-require
+      const getAllReviewsResponse = require('../fixtures/responses/getAllReviewsResponse'); // eslint-disable-line global-require
 
       let result;
+      let newReviewsCall;
+      let allReviewsCall;
+
       before(async () => {
-        nock(API_BASE_URL)
+        newReviewsCall = nock(API_BASE_URL)
           .get('/assignments')
           .query(true)
-          .reply(200, getReviewsResponse);
+          .reply(200, getNewReviewsResponse);
+
+        allReviewsCall = nock(API_BASE_URL)
+          .get('/assignments')
+          .query({ immediately_available_for_review: 'true' })
+          .reply(200, getAllReviewsResponse);
 
         // when the user tries to get a list of reviews
         result = await appTester(App.triggers.new_review.operation.perform);
       });
 
-      it('returns the expected reviews', () => {
+      it('returns the expected review data', () => {
         expect(result.length).to.eql(1);
-        expect(result[0].numberOfReviews).to.eql(6);
-        expect(result[0].numberOfRadicals).to.eql(2);
-        expect(result[0].numberOfKanji).to.eql(1);
-        expect(result[0].numberOfVocabWords).to.eql(3);
+        expect(result[0].numberOfReviews).to.eql(32);
+        expect(result[0].numberOfRadicals).to.eql(0);
+        expect(result[0].numberOfKanji).to.eql(3);
+        expect(result[0].numberOfVocabWords).to.eql(29);
+      });
+
+      it('calls the expected endpoints', () => {
+        expect(newReviewsCall.isDone()).to.eql(true);
+        expect(allReviewsCall.isDone()).to.eql(true);
       });
     });
 
