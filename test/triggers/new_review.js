@@ -25,19 +25,12 @@ describe('WaniKani App', () => {
         result = await appTester(App.triggers.new_review.operation.perform);
       });
 
-      it('returns the expected levels', () => {
-        expect(result.length).to.eql(6);
-        expect(result).to.all.contain.property('id');
-        expect(result).to.all.contain.property('availableAt');
-        expect(result).to.all.contain.property('totalNumberOfReviews');
-        expect(result[0].availableAt).to.eql('2019-12-11T23:00:00Z');
-      });
-
-      it('removes unnecessary attributes from the returned object', () => {
-        expect(result).to.not.contain.any.item.with.property('url');
-        expect(result).to.not.contain.any.item.with.property('object');
-        expect(result).to.not.contain.any.item.with.property('data');
-        expect(result).to.not.contain.any.item.with.property('data_updated_at');
+      it('returns the expected reviews', () => {
+        expect(result.length).to.eql(1);
+        expect(result[0].numberOfReviews).to.eql(6);
+        expect(result[0].numberOfRadicals).to.eql(2);
+        expect(result[0].numberOfKanji).to.eql(1);
+        expect(result[0].numberOfVocabWords).to.eql(3);
       });
     });
 
@@ -55,7 +48,7 @@ describe('WaniKani App', () => {
         result = await appTester(App.triggers.new_review.operation.perform);
       });
 
-      it('returns an empty list with no levels', () => {
+      it('returns an empty list with no reviews', () => {
         expect(result.length).to.eql(0);
       });
     });

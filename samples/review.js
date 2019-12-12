@@ -1,8 +1,7 @@
 module.exports = {
-  id: 12345,
-  totalNumberOfReviews: 80,
-  subjectType: 'kanji',
-  srsStage: 8,
-  srsStageName: 'Apprentice IV',
-  availableAt: '2019-10-01T00:00:00Z',
+  id: '12345-23456',
+  numberOfReviews: 9,
+  numberOfRadicals: 4,
+  numberOfKanji: 2,
+  numberOfVocabWords: 3,
 };

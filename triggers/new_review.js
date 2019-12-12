@@ -2,33 +2,7 @@ const moment = require('moment');
 const sample = require('../samples/review');
 const { API_BASE_URL } = require('../constants');
 
-/**
- * Cleans up times to format them in the desired Zapier format.
- *
- * Also removes unnecessary and confusing fields.
- */
-const cleanReviewEntries = (entry, totalNumberOfReviews) => {
-  const availableAt = moment.utc(entry.data.available_at);
-  const subjectType = entry.data.subject_type;
-  const srsStage = entry.data.srs_stage;
-  const srsStageName = entry.data.srs_stage_name;
-
-  // These pieces would be confusing and / or not helpful to users
-  delete entry.object;
-  delete entry.url;
-  delete entry.data_updated_at;
-  delete entry.data;
-
-  entry.subjectType = subjectType;
-  entry.srsStage = srsStage;
-  entry.srsStageName = srsStageName;
-  entry.totalNumberOfReviews = totalNumberOfReviews;
-  entry.availableAt = availableAt.format();
-
-  return entry;
-};
-
-const triggerNewLevel = async (z, bundle) => {
+const triggerNewReview = async (z, bundle) => {
   // Users might not always have reviews - so let's just default
   // to returning the sample if the user tries to load samples.
   if (bundle && bundle.meta && bundle.meta.isLoadingSample) {
@@ -48,9 +22,32 @@ const triggerNewLevel = async (z, bundle) => {
   const parsedJSON = z.JSON.parse(response.content);
 
   if (parsedJSON && parsedJSON.data && parsedJSON.total_count) {
-    return parsedJSON.data.map(entry =>
-      cleanReviewEntries(entry, parsedJSON.total_count)
-    );
+    let numberOfRadicals = 0;
+    let numberOfKanji = 0;
+    let numberOfVocabWords = 0;
+
+    parsedJSON.data.forEach(entry => {
+      if (entry.data.subject_type === 'radical') {
+        numberOfRadicals++;
+      } else if (entry.data.subject_type === 'kanji') {
+        numberOfKanji++;
+      } else if (entry.data.subject_type === 'vocabulary') {
+        numberOfVocabWords++;
+      }
+    });
+
+    const firstReviewId = parsedJSON.data[0].id;
+    const lastReviewId = parsedJSON.data.slice(-1)[0].id;
+
+    return [
+      {
+        id: firstReviewId + '-' + lastReviewId,
+        numberOfReviews: parsedJSON.total_count,
+        numberOfRadicals: numberOfRadicals,
+        numberOfKanji: numberOfKanji,
+        numberOfVocabWords: numberOfVocabWords,
+      },
+    ];
   }
 
   return [];
@@ -62,12 +59,12 @@ module.exports = {
 
   display: {
     label: 'New Review',
-    description: 'Triggers when you have a new review available.',
+    description: 'Triggers when new reviews become available.',
     important: true,
   },
 
   operation: {
-    perform: triggerNewLevel,
+    perform: triggerNewReview,
 
     sample,
   },
