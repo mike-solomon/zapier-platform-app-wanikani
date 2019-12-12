@@ -37,9 +37,7 @@ git checkout -b <branchName>
 
 ### Deploying / Publishing
 
-- Right now, only I can deploy / publish this app. If you want to make a change, please submit a pull request and, if approved, I'll coordinate rolling it out.
-- Whenever a change is going to be pushed out make sure to update the [CHANGELOG.md](CHANGELOG.md) to record what is
-  changing (and make sure to enter the version based on the guidance below).
+- Right now, only I can deploy / publish this app. If you want to make a change, please submit a pull request and, if approved, I'll coordinate rolling it out and I'll update the [CHANGELOG.md](CHANGELOG.md) accordingly
 
 ## Versioning
 
