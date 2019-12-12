@@ -1,7 +1,4 @@
 {
   "id": 30716,
-  "key": "App30716",
-  "includeInBuild": [
-    "config/default.js"
-  ]
+  "key": "WaniKani"
 }

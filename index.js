@@ -2,6 +2,7 @@ const authentication = require('./authentication');
 const middleware = require('./middleware');
 
 const NewLevelTrigger = require('./triggers/new_level');
+const NewReviewTrigger = require('./triggers/new_review');
 
 const App = {
   version: require('./package.json').version, // eslint-disable-line global-require
@@ -18,7 +19,10 @@ const App = {
 
   resources: {},
 
-  triggers: { [NewLevelTrigger.key]: NewLevelTrigger },
+  triggers: {
+    [NewLevelTrigger.key]: NewLevelTrigger,
+    [NewReviewTrigger.key]: NewReviewTrigger,
+  },
 
   searches: {},
 
