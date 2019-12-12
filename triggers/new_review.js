@@ -42,6 +42,47 @@ const getAllReviews = async (z, bundle) => {
   }
 };
 
+// This is a way to help free users filter this trigger without having
+// to set up an actual filter. It will ensure that users are only
+// notified if their number of * is above the respective values.
+const checkIfWeShouldNotifyUser = (
+  z,
+  bundle,
+  numberOfReviews,
+  numberOfRadicals,
+  numberOfKanji,
+  numberOfVocabWords
+) => {
+  let shouldNotifyUser = true;
+
+  if (
+    bundle.inputData.minReviews &&
+    numberOfReviews < bundle.inputData.minReviews
+  ) {
+    shouldNotifyUser = false;
+  }
+
+  if (
+    bundle.inputData.minRadicals &&
+    numberOfRadicals < bundle.inputData.minRadicals
+  ) {
+    shouldNotifyUser = false;
+  }
+
+  if (bundle.inputData.minKanji && numberOfKanji < bundle.inputData.minKanji) {
+    shouldNotifyUser = false;
+  }
+
+  if (
+    bundle.inputData.minVocab &&
+    numberOfVocabWords < bundle.inputData.minVocab
+  ) {
+    shouldNotifyUser = false;
+  }
+
+  return shouldNotifyUser;
+};
+
 const triggerNewReview = async (z, bundle) => {
   // Users might not always have reviews - so let's just default
   // to returning the sample if the user tries to load samples.
@@ -56,6 +97,7 @@ const triggerNewReview = async (z, bundle) => {
     // https://docs.api.wanikani.com/20170710/#get-all-assignments
     const allReviews = await getAllReviews(z, bundle);
 
+    const numberOfReviews = allReviews.total_count;
     let numberOfRadicals = 0;
     let numberOfKanji = 0;
     let numberOfVocabWords = 0;
@@ -70,13 +112,26 @@ const triggerNewReview = async (z, bundle) => {
       }
     });
 
+    if (
+      !checkIfWeShouldNotifyUser(
+        z,
+        bundle,
+        numberOfReviews,
+        numberOfRadicals,
+        numberOfKanji,
+        numberOfVocabWords
+      )
+    ) {
+      return [];
+    }
+
     return [
       {
         // By setting the available at time of the most recent reviews to the id,
         // we can ensure that we won't trigger multiple times on the same reviews
         // even when people are doing their reviews.
         id: moment.utc(availableAtTime).format(),
-        numberOfReviews: allReviews.total_count,
+        numberOfReviews: numberOfReviews,
         numberOfRadicals: numberOfRadicals,
         numberOfKanji: numberOfKanji,
         numberOfVocabWords: numberOfVocabWords,
@@ -99,6 +154,37 @@ module.exports = {
 
   operation: {
     perform: triggerNewReview,
+
+    inputFields: [
+      {
+        key: 'info',
+        type: 'copy',
+        helpText:
+          'Providing any of the below fields will ensure that you only get notified ' +
+          'if the number of reviews/radicals/etc is above the number specified. If ' +
+          'you provide none, you will be notified whenever new reviews become available.',
+      },
+      {
+        key: 'minReviews',
+        label: 'Minimum Number Of Reviews',
+        type: 'integer',
+      },
+      {
+        key: 'minRadicals',
+        label: 'Minimum Number Of Radicals',
+        type: 'integer',
+      },
+      {
+        key: 'minKanji',
+        label: 'Minimum Number Of Kanji',
+        type: 'integer',
+      },
+      {
+        key: 'minVocab',
+        label: 'Minimum Number Of Vocab Words',
+        type: 'integer',
+      },
+    ],
 
     sample,
   },

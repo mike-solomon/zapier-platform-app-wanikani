@@ -6,45 +6,187 @@ const App = require('../../index');
 
 const appTester = zapier.createAppTester(App);
 
-describe('WaniKani App', () => {
+describe.only('WaniKani App', () => {
   it('declares a new review trigger', () =>
     expect(App.triggers.new_review).to.exist);
 
   describe('new review trigger', () => {
     describe('given WaniKani returns a valid list of reviews', () => {
+      describe('given the user does not specify any minimum requirements', () => {
+        const getNewReviewsResponse = require('../fixtures/responses/getNewReviewsResponse'); // eslint-disable-line global-require
+        const getAllReviewsResponse = require('../fixtures/responses/getAllReviewsResponse'); // eslint-disable-line global-require
+
+        let result;
+        let newReviewsCall;
+        let allReviewsCall;
+
+        before(async () => {
+          newReviewsCall = nock(API_BASE_URL)
+            .get('/assignments')
+            .query(true)
+            .reply(200, getNewReviewsResponse);
+
+          allReviewsCall = nock(API_BASE_URL)
+            .get('/assignments')
+            .query({ immediately_available_for_review: 'true' })
+            .reply(200, getAllReviewsResponse);
+
+          // when the user tries to get a list of reviews
+          result = await appTester(App.triggers.new_review.operation.perform);
+        });
+
+        it('returns the expected review data', () => {
+          expect(result.length).to.eql(1);
+          expect(result[0].numberOfReviews).to.eql(32);
+          expect(result[0].numberOfRadicals).to.eql(0);
+          expect(result[0].numberOfKanji).to.eql(3);
+          expect(result[0].numberOfVocabWords).to.eql(29);
+        });
+
+        it('calls the expected endpoints', () => {
+          expect(newReviewsCall.isDone()).to.eql(true);
+          expect(allReviewsCall.isDone()).to.eql(true);
+        });
+      });
+
+      describe('given there are less reviews than the user requested to be notified for', () => {
+        const getNewReviewsResponse = require('../fixtures/responses/getNewReviewsResponse'); // eslint-disable-line global-require
+        const getAllReviewsResponse = require('../fixtures/responses/getAllReviewsResponse'); // eslint-disable-line global-require
+
+        let result;
+
+        before(async () => {
+          nock(API_BASE_URL)
+            .get('/assignments')
+            .query(true)
+            .reply(200, getNewReviewsResponse);
+
+          nock(API_BASE_URL)
+            .get('/assignments')
+            .query({ immediately_available_for_review: 'true' })
+            .reply(200, getAllReviewsResponse);
+
+          const bundle = {
+            inputData: {
+              minReviews: 50,
+            },
+          };
+
+          // when the user tries to get a list of reviews
+          result = await appTester(
+            App.triggers.new_review.operation.perform,
+            bundle
+          );
+        });
+
+        it('does not return any results', () => {
+          expect(result.length).to.eql(0);
+        });
+      });
+
+      describe('given there are less radicals than the user requested to be notified for', () => {
+        const getNewReviewsResponse = require('../fixtures/responses/getNewReviewsResponse'); // eslint-disable-line global-require
+        const getAllReviewsResponse = require('../fixtures/responses/getAllReviewsResponse'); // eslint-disable-line global-require
+
+        let result;
+
+        before(async () => {
+          nock(API_BASE_URL)
+            .get('/assignments')
+            .query(true)
+            .reply(200, getNewReviewsResponse);
+
+          nock(API_BASE_URL)
+            .get('/assignments')
+            .query({ immediately_available_for_review: 'true' })
+            .reply(200, getAllReviewsResponse);
+
+          const bundle = {
+            inputData: {
+              minRadicals: 50,
+            },
+          };
+
+          // when the user tries to get a list of reviews
+          result = await appTester(
+            App.triggers.new_review.operation.perform,
+            bundle
+          );
+        });
+
+        it('does not return any results', () => {
+          expect(result.length).to.eql(0);
+        });
+      });
+
+      describe('given there are less kanji than the user requested to be notified for', () => {
+        const getNewReviewsResponse = require('../fixtures/responses/getNewReviewsResponse'); // eslint-disable-line global-require
+        const getAllReviewsResponse = require('../fixtures/responses/getAllReviewsResponse'); // eslint-disable-line global-require
+
+        let result;
+
+        before(async () => {
+          nock(API_BASE_URL)
+            .get('/assignments')
+            .query(true)
+            .reply(200, getNewReviewsResponse);
+
+          nock(API_BASE_URL)
+            .get('/assignments')
+            .query({ immediately_available_for_review: 'true' })
+            .reply(200, getAllReviewsResponse);
+
+          const bundle = {
+            inputData: {
+              minKanji: 50,
+            },
+          };
+
+          // when the user tries to get a list of reviews
+          result = await appTester(
+            App.triggers.new_review.operation.perform,
+            bundle
+          );
+        });
+
+        it('does not return any results', () => {
+          expect(result.length).to.eql(0);
+        });
+      });
+    });
+
+    describe('given there are less vocab words than the user requested to be notified for', () => {
       const getNewReviewsResponse = require('../fixtures/responses/getNewReviewsResponse'); // eslint-disable-line global-require
       const getAllReviewsResponse = require('../fixtures/responses/getAllReviewsResponse'); // eslint-disable-line global-require
 
       let result;
-      let newReviewsCall;
-      let allReviewsCall;
 
       before(async () => {
-        newReviewsCall = nock(API_BASE_URL)
+        nock(API_BASE_URL)
           .get('/assignments')
           .query(true)
           .reply(200, getNewReviewsResponse);
 
-        allReviewsCall = nock(API_BASE_URL)
+        nock(API_BASE_URL)
           .get('/assignments')
           .query({ immediately_available_for_review: 'true' })
           .reply(200, getAllReviewsResponse);
 
+        const bundle = {
+          inputData: {
+            minVocab: 50,
+          },
+        };
+
         // when the user tries to get a list of reviews
-        result = await appTester(App.triggers.new_review.operation.perform);
+        result = await appTester(
+          App.triggers.new_review.operation.perform,
+          bundle
+        );
       });
 
-      it('returns the expected review data', () => {
-        expect(result.length).to.eql(1);
-        expect(result[0].numberOfReviews).to.eql(32);
-        expect(result[0].numberOfRadicals).to.eql(0);
-        expect(result[0].numberOfKanji).to.eql(3);
-        expect(result[0].numberOfVocabWords).to.eql(29);
-      });
-
-      it('calls the expected endpoints', () => {
-        expect(newReviewsCall.isDone()).to.eql(true);
-        expect(allReviewsCall.isDone()).to.eql(true);
+      it('does not return any results', () => {
+        expect(result.length).to.eql(0);
       });
     });
 
