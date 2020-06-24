@@ -2,7 +2,7 @@
   "name": "zapier-platform-app-wanikani",
   "version": "1.0.0",
   "description": "Zapier Platform App for WaniKani.",
-  "repository": "mikesol314/zapier-platform-app-wanikani",
+  "repository": "https://github.com/mikesol314/zapier-platform-app-wanikani",
   "homepage": "https://zapier.com/",
   "author": "Mike Solomon <mikesol@gmail.com>",
   "license": "MIT",
