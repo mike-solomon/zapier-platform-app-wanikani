@@ -4,7 +4,7 @@
   "description": "Zapier Platform App for WaniKani.",
   "repository": "https://github.com/mikesol314/zapier-platform-app-wanikani",
   "homepage": "https://zapier.com/",
-  "author": "Mike Solomon <mikesol@gmail.com>",
+  "author": "Mike Solomon <mikesol@hey.com>",
   "license": "MIT",
   "main": "index.js",
   "scripts": {
