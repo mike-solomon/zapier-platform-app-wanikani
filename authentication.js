@@ -5,6 +5,7 @@ const testAuth = async z => {
     method: 'GET',
     url: `${API_BASE_URL}/user`,
     disableMiddlewareErrorChecking: true,
+    skipThrowForStatus: true,
   });
 
   if (response.status !== 200) {

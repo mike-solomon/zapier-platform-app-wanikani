@@ -19,6 +19,9 @@ const includeWanikaniRevision = (request, z, bundle) => {
   return request;
 };
 
+// TODO: With the latest version of the zapier platform core - we can't
+// do error handling in this way. Will need to figure out something else
+// if the app ever has common errors.
 const checkForErrors = (response, z) => {
   // In some cases the lower levels of the code can provide better error
   // messages. If they set this flag in the request, then we should fall back
@@ -58,7 +61,9 @@ const checkForErrors = (response, z) => {
   // If we end up here guess we don't really have any idea what happened so we'll
   // just return the generic content.
   throw new Error(
-    `${prefixErrorMessageWith}. Error code ${responseHttpStatusCode}: ${response.content}`
+    `${prefixErrorMessageWith}. Error code ${responseHttpStatusCode}: ${
+      response.content
+    }`
   );
 };
 

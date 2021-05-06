@@ -1,6 +1,6 @@
 {
   "name": "zapier-platform-app-wanikani",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Zapier Platform App for WaniKani.",
   "repository": "https://github.com/mikesol314/zapier-platform-app-wanikani",
   "homepage": "https://zapier.com/",
@@ -22,7 +22,7 @@
     "chai-things": "^0.2.0",
     "lodash": "^4.17.19",
     "moment": "^2.24.0",
-    "zapier-platform-core": "9.0.0"
+    "zapier-platform-core": "10.2.0"
   },
   "devDependencies": {
     "chai": "^4.2.0",
