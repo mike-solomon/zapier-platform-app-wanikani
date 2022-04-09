@@ -21,7 +21,7 @@
     "chai-string": "^1.5.0",
     "chai-things": "^0.2.0",
     "lodash": "^4.17.19",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "zapier-platform-core": "10.2.0"
   },
   "devDependencies": {
